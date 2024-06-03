@@ -1,18 +1,23 @@
-import mysql from 'mysql2/promise'
 
-const conex = await mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    port:"3306",
-    database:'test',
-    password:"",
+import { Sequelize } from "sequelize";
 
-})
 
-conex.connect((err)=>{
-if(err)throw err;
-console.log("dbConectada")
+const conexion = new Sequelize("test","root","",{
+
+    host: "localhost",
+    dialect:"mysql",
+    port: 3306,
 
 })
+
+try{
+    await conexion.authenticate()
+    console.log("Conexion establecida")
+}catch(error){
+
+    console.log("Error conectando a la BD", error)
+}
+
+
 
 export default conexion

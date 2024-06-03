@@ -1,10 +1,13 @@
-import { Router } from "express";
-import rutasHoras from "./rutasHoras.js";
-import rutasReporte from "./rutasReporte.js";
+
+import {Router} from "express";
+import rutasItems from "./rutasItems.js";
+import rutasStock from "./rutasStock.js";
+
+
 
 const enrutador = Router()
 
-enrutador.use("/horas",rutasHoras)
-enrutador.use("/reporte",rutasReporte)
+enrutador.use("/Items",rutasItems)
+enrutador.use("/stock",rutasStock)
 
-export default enrutador()
+export default enrutador

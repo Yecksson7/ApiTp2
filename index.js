@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended:true}))
 
 app.use(enrutador)
 
-
+await conexion.sync({force:true})
 
 
 app.listen(8080,()=>{
