@@ -6,11 +6,6 @@ class StockItems extends Model {}
 
 StockItems.init({
 
-    IdItem:{
-        type:DataTypes.INTEGER,
-        allowNull:false,
-
-    },
     CantidadItem:{
         type:DataTypes.INTEGER,
         allowNull:false
@@ -20,3 +15,5 @@ StockItems.init({
     sequelize:conexion,
     modelName:"StockItems"
 })
+
+export default StockItems
