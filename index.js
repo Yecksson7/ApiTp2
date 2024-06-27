@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended:true}))
 
 app.use(enrutador)
 
-await conexion.sync({force:true})
+await conexion.sync({force:false})
 
 
 app.listen(PORT,()=>{

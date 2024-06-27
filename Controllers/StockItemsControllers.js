@@ -5,16 +5,31 @@ class StockItemsControllers{
     constructor(){}
 
 
+
+
+    mostrarStock=async(req, res)=>{
+
+      try{
+
+       const data = await StockItems.findAll()
+       res.status(200).send({sucess:true, message:data})
+      }catch(error){
+       res.status(500).send({sucess:false, message:error.mesage})
+      } 
+
+   }
+
+
     mostrarStockXItem=async(req, res)=>{
 
       const {id} = req.params
       try{
 
-       const data = await StockItems.findOne({
+       const data = await StockItems.findAll({ //cambie el find one
         where:{
           ItemId: id 
         },
-        attributes: ["ItemId", "CantidadItem"]
+        attributes: ["ItemId", "CantidadItem","Deposito"]
        })
        res.status(200).send({sucess:true, message:data})
       }catch(error){
@@ -29,29 +44,32 @@ class StockItemsControllers{
  
      crearStockItem=async(req, res)=>{
  
+      
          try{
- 
-             const{idItem,cantidadItem}=req.body
+          console.log(req.body)
+             const{idItem,CantidadItem,Deposito}=req.body
              const data= await StockItems.create({
                 ItemId: idItem,
-                cantidadItem
+                CantidadItem,
+                Deposito
                 
              })
              res.status(200).send({sucess:true, message:data})
  
          }catch(error){
  
-             res.status(500).send({sucess:false, message:error.mesage})
+          console.log(req.body)
+             res.status(500).send({sucess:false, message:error.message})
          }
      }
      
      
        deleteStockItem = async (req, res) => {
          try {
-           const { idItem } = req.params;
+           const { id } = req.params;
            const data = await StockItems.destroy({
              where: {
-               idItem,
+               ItemId:id,
              },
            });
            res.status(200).send({ success: true, message: data });
@@ -63,16 +81,16 @@ class StockItemsControllers{
  
        updateStockItem = async (req, res) => {
          try {
-           const { itemId } = req.params;
-           const {nuevoStock} = req.body;
+           const { id } = req.params;
+           const {CantidadItem} = req.body;
            const data = await StockItems.update(
              {
-              nuevoStock,
+              CantidadItem,
                
              },
              {
                where: {
-                 ItemId:itemId
+                 ItemId: id
                },
              }
            );

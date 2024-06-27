@@ -9,6 +9,10 @@ StockItems.init({
     CantidadItem:{
         type:DataTypes.INTEGER,
         allowNull:false
+    },
+    Deposito:{
+        type:DataTypes.STRING,
+        allowNull:false,
     }
 },
 {
